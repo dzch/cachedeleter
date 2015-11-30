@@ -241,7 +241,7 @@ func (d *Deleter) initRuntimeConf() (err error) {
 }
 
 func (d *Deleter) initLog() (err error) {
-	err = logger.Init(d.logDir, "cachedeleter", uint8(d.logLevel))
+	err = logger.Init(d.logDir, "cachedeleter", logger.LogLevel(d.logLevel))
 	return
 }
 
