@@ -1,0 +1,22 @@
+log_dir: ./log
+log_level: 16
+
+port: 10000
+
+cache_server_conf: ./conf/redisproxy.yaml
+cluster_config:
+ api_cache: 
+  min_conns_each_server: 10
+  max_conns_each_server: 1000
+  del_all_timeout_ms: 200
+  conn_timeout_ms: 10
+  read_timeout_ms: 5
+  write_timeout_ms: 5
+  mq_timeout_ms: 100
+  delays:
+   - 0
+   - 2
+   - 20
+  mqs:
+   - 127.0.0.1:10001
+   - 127.0.0.1:8666

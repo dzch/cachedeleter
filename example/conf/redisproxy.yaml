@@ -1,0 +1,135 @@
+api:
+  listen: 0.0.0.0:12201
+  hash: fnv1a_64
+  distribution: range
+  preconnect: true
+  timeout: 150
+  auto_eject_hosts: true
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  ms_mode: true
+  read_mode: 2
+  rate: 100000
+  burst: 200000
+  redis: true
+  servers:
+   - m:10.10.37.210:6380:1 server1 0-32768
+   - m:10.10.3.37:6381:1 server4 32768-65536
+
+# pic used as cache
+pic:
+  listen: 0.0.0.0:12202
+  hash: fnv1a_64
+  distribution: ketama
+  preconnect: true
+  timeout: 15
+  auto_eject_hosts: true
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  rate: 100000
+  burst: 200000
+  redis: true
+  servers:
+   - 10.6.10.133:6380:1 server1
+   - 10.6.4.219:6380:1 server2
+   - 10.6.12.128:6380:1 server3
+   - 10.6.9.142:6380:1 server4
+   - 10.6.7.83:6380:1 server5
+   - 10.6.5.193:6380:1 server6
+   - 10.6.18.182:6380:1 server7
+   - 10.6.27.208:6380:1 server8
+   - 10.6.21.64:6380:1 server9
+   - 10.6.22.44:6380:1 server10
+
+register:
+  listen: 0.0.0.0:12203
+  hash: fnv1a_64
+  distribution: range
+  preconnect: true
+  timeout: 150
+  auto_eject_hosts: false
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  rate: 100000
+  ms_mode: true
+  read_mode: 2
+  burst: 200000
+  redis: true
+  servers:
+   - m:10.10.37.210:6383:1 server1 0-65536
+
+# user used as cache of user
+api_cache:
+  listen: 0.0.0.0:12204
+  hash: fnv1a_64
+  distribution: ketama
+  preconnect: true
+  timeout: 15
+  auto_eject_hosts: true
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  rate: 100000
+  burst: 200000
+  redis: true
+  servers:
+   - 10.10.18.72:6384:1 server1
+   - 10.10.30.119:6384:1 server2
+   - 10.10.10.125:6384:1 server3
+   - 10.10.32.34:6384:1 server4
+   - 10.10.1.128:6384:1 server5
+   - 10.10.29.239:6384:1 server6
+   - 10.10.40.161:6384:1 server7
+   - 10.10.42.88:6384:1 server8
+   - 10.10.20.124:6384:1 server9
+   - 10.10.30.151:6384:1 server10
+   - 10.10.51.165:6384:1 server11
+   - 10.10.25.108:6384:1 server12
+   - 10.10.61.144:6384:1 server13
+
+# used for op, store sth. used by operation
+op:
+  listen: 0.0.0.0:12205
+  hash: fnv1a_64
+  distribution: range
+  preconnect: true
+  timeout: 1000
+  auto_eject_hosts: false
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  rate: 100000
+  ms_mode: true
+  read_mode: 2
+  burst: 200000
+  redis: true
+  servers:
+   - m:10.10.37.210:6382:1 server1 0-65536
+
+counter:
+  listen: 0.0.0.0:12206
+  hash: fnv1a_64
+  distribution: range
+  preconnect: true
+  timeout: 150
+  auto_eject_hosts: false
+  server_failure_limit: 3
+  server_retry_timeout: 2000
+  server_connections: 2
+  auto_probe_hosts: true
+  rate: 100000
+  ms_mode: true
+  read_mode: 2
+  burst: 200000
+  redis: true
+  servers:
+   - m:10.10.3.37:6385:1 server1 0-65536
+
