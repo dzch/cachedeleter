@@ -1,11 +1,16 @@
+# log dir
 log_dir: ./log
+# log level
 log_level: 16
-
+# listening port
 port: 10000
 
+# twemproxy config
 cache_server_conf: ./conf/redisproxy.yaml
+# cache cluster config
 cluster_config:
- api_cache: 
+ # cluster name, should be the same as in cache_server_conf
+ cache_xx: 
   min_conns_each_server: 10
   max_conns_each_server: 1000
   del_all_timeout_ms: 200
@@ -13,10 +18,10 @@ cluster_config:
   read_timeout_ms: 5
   write_timeout_ms: 5
   mq_timeout_ms: 100
+  # do delete just after delay xx seconds
   delays:
-   - 0
-   - 2
-   - 20
+   - 10
+  # backend mqs
   mqs:
    - 127.0.0.1:10001
    - 127.0.0.1:8666
